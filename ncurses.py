@@ -27,7 +27,7 @@ def main(stdscr):
 
         k = stdscr.getch()
         if k == curses.KEY_DOWN and current_line < len(job_lines) - 1:
-            current_line = min(current_line + 1, len(job_lines) - num_lines)
+            current_line = min(current_line + 1, len(job_lines))
         elif k == curses.KEY_UP and current_line > 0:
             current_line = max(current_line - 1, 0)
         elif k == ord('d'):  # Example: 'd' for delete
