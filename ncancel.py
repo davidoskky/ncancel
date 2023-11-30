@@ -9,7 +9,7 @@ def init_curses():
     curses.start_color()
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
-def hide_cursor()
+def hide_cursor():
     curses.curs_set(0)
 
 def fetch_jobs():
@@ -52,7 +52,8 @@ def main(stdscr):
         else:
             jobs = []
 
-        display_jobs(stdscr, job_lines, current_line)
+
+        display_jobs(stdscr, jobs, current_line)
 
         stdscr.timeout(2000)  # 2 seconds
 
