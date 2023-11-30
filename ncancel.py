@@ -69,6 +69,8 @@ def main(stdscr):
         elif k == ord('d'):  # 'd' for delete
             job_id = job_lines[current_line].split()[0]
             cancel_job(job_id)
+        elif k == ord('q') or k == ord('Q'):
+            break
         stdscr.refresh()
 
 curses.wrapper(main)
