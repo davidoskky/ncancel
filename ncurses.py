@@ -19,7 +19,7 @@ def main(stdscr):
         jobs = subprocess.check_output(['squeue']).decode()
         job_lines = jobs.splitlines()
 
-        for i in range(current_line, min(current_line + num_lines, len(job_lines))):
+        for i in range(len(job_lines)):
             if i == current_line:
                 stdscr.addstr(job_lines[i] + '\n', curses.color_pair(1))
             else:
