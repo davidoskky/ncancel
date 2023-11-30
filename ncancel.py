@@ -2,6 +2,7 @@
 import curses
 import subprocess
 import threading
+import time
 import queue
 
 def init_curses():
@@ -12,12 +13,16 @@ def init_curses():
 def hide_cursor():
     curses.curs_set(0)
 
-def fetch_jobs():
-    """Fetch job list from squeue."""
-    try:
-        return subprocess.check_output(['squeue']).decode().splitlines()
-    except subprocess.CalledProcessError:
-        return ["Error: Unable to fetch jobs"]
+
+def fetch_jobs(job_queue):
+    """Fetch job list from squeue in a separate thread."""
+    while True:
+        try:
+            jobs = subprocess.check_output(['squeue']).decode().splitlines()
+        except subprocess.CalledProcessError:
+            jobs = ["Error: Unable to fetch jobs"]
+        job_queue.put(jobs)
+        time.sleep(2)  # Sleep for 2 seconds before fetching again
 
 def display_jobs(stdscr, job_lines, current_line):
     """Display the job list."""
@@ -55,7 +60,7 @@ def main(stdscr):
 
         display_jobs(stdscr, jobs, current_line)
 
-        stdscr.timeout(2000)  # 2 seconds
+        stdscr.timeout(1000)  # 1 second
 
         k = stdscr.getch()
         if k == curses.KEY_DOWN and current_line < len(job_lines) - 1:
