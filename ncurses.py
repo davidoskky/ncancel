@@ -14,6 +14,8 @@ def main(stdscr):
         stdscr.addstr("Slurm Job Manager\n", curses.A_BOLD)
         # Fetch and display jobs
         jobs = subprocess.check_output(['squeue']).decode()
+        job_lines = jobs.splitlines()
+
         stdscr.addstr(jobs)
 
         for i in range(current_line, min(current_line + num_lines, len(job_lines))):
