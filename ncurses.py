@@ -15,11 +15,11 @@ def main(stdscr):
         # Handle key presses for scrolling and selecting
         k = stdscr.getch()
         if k == curses.KEY_DOWN:
-            # Scroll down logic
+            stdscr.clear()
         elif k == curses.KEY_UP:
-            # Scroll up logic
+            stdscr.clear()
         elif k == ord('d'):  # Example: 'd' for delete
-            # Cancel job logic
+            stdscr.clear()
         # Refresh the screen
         stdscr.refresh()
         # Other logic
