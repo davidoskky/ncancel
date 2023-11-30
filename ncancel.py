@@ -43,6 +43,7 @@ def main(stdscr):
     init_curses()
 
     current_line = 1
+    last_jobs = []
     job_queue = queue.Queue()
     threading.Thread(target=fetch_jobs, args=(job_queue,), daemon=True).start()
 
@@ -53,12 +54,10 @@ def main(stdscr):
         stdscr.addstr("Ncancel - Slurm Job Manager\n", curses.A_BOLD)
 
         if not job_queue.empty():
-            jobs = job_queue.get_nowait()
-        else:
-            jobs = []
+            last_jobs = job_queue.get_nowait()
 
-
-        display_jobs(stdscr, jobs, current_line)
+        if last_jobs:
+            display_jobs(stdscr, last_jobs, current_line)
 
         stdscr.timeout(1000)  # 1 second
 
