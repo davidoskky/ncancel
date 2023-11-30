@@ -11,6 +11,8 @@ def main(stdscr):
 
     curses.start_color()
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+
+
     while True:
         stdscr.clear()
         # Display header
@@ -24,6 +26,8 @@ def main(stdscr):
                 stdscr.addstr(job_lines[i] + '\n', curses.color_pair(1))
             else:
                 stdscr.addstr(job_lines[i] + '\n')
+
+        stdscr.timeout(2000)  # 2000 milliseconds = 2 seconds
 
         k = stdscr.getch()
         if k == curses.KEY_DOWN and current_line < len(job_lines) - 1:
