@@ -31,9 +31,8 @@ def main(stdscr):
         elif k == curses.KEY_UP and current_line > 0:
             current_line = max(current_line - 1, 1)
         elif k == ord('d'):  # Example: 'd' for delete
-            # Cancel job logic
-            pass
-        # Refresh the screen
+            job_id = job_lines[current_line].split()[0]
+            subprocess.call(['scancel', job_id])
         stdscr.refresh()
         # Other logic
 
