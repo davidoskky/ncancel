@@ -16,7 +16,7 @@ Ncancel is a Python-based terminal application for managing Slurm jobs. It uses 
    ```
 2. Link the script to your local binary folder 
     ```bash
-    ln -s ncancel/ncancel.py ~/.local/bin/ncancel
+    ln -s $(realpath ncancel/ncancel.py) ~/.local/bin/ncancel
     ```
 
 ## Key Commands
