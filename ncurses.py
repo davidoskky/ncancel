@@ -8,6 +8,9 @@ def main(stdscr):
 
     current_line = 0  # Current line position in job list
     num_lines = curses.LINES - 4    
+
+    curses.start_color()
+    curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
     while True:
         stdscr.clear()
         # Display header
@@ -16,16 +19,17 @@ def main(stdscr):
         jobs = subprocess.check_output(['squeue']).decode()
         job_lines = jobs.splitlines()
 
-        stdscr.addstr(jobs)
-
         for i in range(current_line, min(current_line + num_lines, len(job_lines))):
-            stdscr.addstr(job_lines[i] + '\n')
-        # Handle key presses for scrolling and selecting
+            if i == current_line:
+                stdscr.addstr(job_lines[i] + '\n', curses.color_pair(1))
+            else:
+                stdscr.addstr(job_lines[i] + '\n')
+
         k = stdscr.getch()
-        if k == curses.KEY_DOWN and current_line < len(job_lines) - num_lines:
-            current_line += 1
+        if k == curses.KEY_DOWN and selected_line < len(job_lines) - 1:
+            current_line = min(current_line + 1, len(job_lines) - num_lines)
         elif k == curses.KEY_UP and current_line > 0:
-            current_line -= 1
+            current_line = max(current_line - 1, 0)
         elif k == ord('d'):  # Example: 'd' for delete
             # Cancel job logic
             pass
