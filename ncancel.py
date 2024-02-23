@@ -53,7 +53,7 @@ def get_work_dir(job_id):
 def display_jobs(stdscr, job_lines, current_line):
     """Display the job list."""
 
-    max_y = stdscr.getmaxyx()
+    max_y, _ = stdscr.getmaxyx()
     max_job_line_index = max_y - 3
     work_dir = ""
 
