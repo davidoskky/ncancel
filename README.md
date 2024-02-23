@@ -26,5 +26,9 @@ Q: Quit the application.
 
 ## Features
 Real-Time Updates: The job list is automatically refreshed every 2 seconds.
+
 Job Cancellation: Cancel jobs directly from the interface.
+
 Error Handling: Displays errors (e.g., unable to fetch jobs).
+
+The working directory of the selected job is displayed on the bottom of the screen.
