@@ -31,4 +31,4 @@ Job Cancellation: Cancel jobs directly from the interface.
 
 Error Handling: Displays errors (e.g., unable to fetch jobs).
 
-The working directory of the selected job is displayed on the bottom of the screen.
+The working directory of the selected job and the total number of jobs are displayed at the bottom of the screen.
