@@ -54,8 +54,9 @@ def display_jobs(stdscr, job_lines, current_line):
     """Display the job list."""
 
     max_y, _ = stdscr.getmaxyx()
-    max_job_line_index = max_y - 3
+    max_job_line_index = max_y - 4
     work_dir = ""
+    total_calculations = len(job_lines)
 
     if job_lines:
         # Extract job ID from the currently selected line
@@ -69,9 +70,12 @@ def display_jobs(stdscr, job_lines, current_line):
         else:
             stdscr.addstr(i, 0, job)
 
-    # Display the working directory on the last line
-    stdscr.move(max_y - 2, 0)
+    # Display the total number of calculations
+    stdscr.move(max_y - 3, 0)
     stdscr.clrtoeol()
+    stdscr.addstr(max_y - 2, 0, f"Total Calculations: {total_calculations}")
+
+    # Display the working directory on the last line
     stdscr.addstr(max_y - 1, 0, f"WorkDir: {work_dir}")
 
 
